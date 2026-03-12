@@ -1,175 +1,122 @@
-# 🖼️ Image Classification using CNN and MobileNetV2
+# Image Classification with Custom CNN and MobileNetV2
 
-This project implements an **image classification system** using two deep learning approaches:
+This project implements image classification using two approaches:
 
-- Custom **Convolutional Neural Network (CNN)**
-- **Transfer Learning** using MobileNetV2
+- A manually designed CNN (`CNN manual`)
+- Transfer learning with `MobileNetV2`
 
-The goal of this project is to compare the performance between a manually designed CNN architecture and a pretrained deep learning model.
+Both models are trained with TensorFlow/Keras and exported to multiple deployment formats.
 
-Both models were trained using **TensorFlow/Keras** and exported into multiple formats for deployment.
+## Course Context
 
----
+This project was developed for Dicoding's **Belajar Fundamental Deep Learning untuk Pemula**.
 
-## 📚 Course Information
+## Features
 
-This project was developed as part of the course:
+- Custom CNN model architecture
+- MobileNetV2 transfer learning pipeline
+- Performance comparison between both models
+- Early stopping to reduce overfitting
+- Exported models for TensorFlow, TensorFlow.js, and TensorFlow Lite
 
-**Belajar Fundamental Deep Learning untuk Pemula** by **Dicoding**
+## Model Architectures
 
-The course introduces fundamental concepts of deep learning, including:
+### 1) Custom CNN
 
-- Convolutional Neural Networks (CNN)
-- Transfer Learning
-- Image Classification
-- Model evaluation
-- Model deployment
-
----
-
-## ✨ Features
-
-- Custom CNN architecture built from scratch  
-- Transfer learning using **MobileNetV2**  
-- Model performance comparison  
-- Early stopping training strategy  
-- Model export to multiple formats  
-- Cross-platform deployment support  
-
----
-
-# 🧠 Models
-
-## 1️⃣ Custom CNN
-
-The CNN model is manually designed using multiple convolutional layers followed by batch normalization, pooling layers, and fully connected layers.
-
-### Architecture Overview
-
-
-Conv2D → BatchNorm → MaxPooling
-Conv2D → BatchNorm → MaxPooling
-Conv2D → BatchNorm → MaxPooling
-Conv2D → BatchNorm → MaxPooling
-Conv2D → BatchNorm → MaxPooling
+```text
+Conv2D -> BatchNorm -> MaxPooling
+Conv2D -> BatchNorm -> MaxPooling
+Conv2D -> BatchNorm -> MaxPooling
+Conv2D -> BatchNorm -> MaxPooling
+Conv2D -> BatchNorm -> MaxPooling
 Flatten
-Dense → Dropout
-Dense → Dropout
-Softmax Output
+Dense -> Dropout
+Dense -> Dropout
+Softmax
+```
 
+### 2) MobileNetV2 (Transfer Learning)
 
-### Performance
-
-| Metric | Score |
-|------|------|
-| Training Accuracy | **91.79%** |
-| Validation Accuracy | **87.29%** |
-| Test Accuracy | **87.53%** |
-
----
-
-## 2️⃣ MobileNetV2 (Transfer Learning)
-
-MobileNetV2 pretrained on **ImageNet** is used as a feature extractor.
-
-The base layers are frozen while additional dense layers are added on top for classification.
-
-### Architecture
-
-
-MobileNetV2 (Frozen)
+```text
+MobileNetV2 (frozen base)
 GlobalAveragePooling
-Dense (512)
+Dense(512)
 Dropout
-Dense (256)
+Dense(256)
 Dropout
-Softmax Output
+Softmax
+```
 
+## Results
 
-### Performance
+| Model | Training Acc | Validation Acc | Test Acc |
+| --- | ---: | ---: | ---: |
+| Custom CNN | 91.79% | 87.29% | **87.53%** |
+| MobileNetV2 | 84.47% | **88.85%** | 86.96% |
 
-| Metric | Score |
-|------|------|
-| Training Accuracy | **84.47%** |
-| Validation Accuracy | **88.85%** |
-| Test Accuracy | **86.96%** |
+Both models perform similarly, with the custom CNN slightly higher on test accuracy.
 
----
+## Training Strategy
 
-## 📊 Model Comparison
-
-| Model | Test Accuracy |
-|------|------|
-| Custom CNN | **87.53%** |
-| MobileNetV2 | **86.96%** |
-
-Both models achieved **similar performance**, with the custom CNN slightly outperforming MobileNetV2 on the test dataset.
-
----
-
-## ⚙️ Training Strategy
-
-To prevent overfitting and improve training efficiency, the following callbacks were used:
-
-### Early Stopping
-
-Training stops when validation loss stops improving.
+Early stopping is used to stop training when validation loss does not improve:
 
 ```python
 EarlyStopping(
-    monitor='val_loss',
+    monitor="val_loss",
     patience=7,
-    restore_best_weights=True
+    restore_best_weights=True,
 )
-📦 Model Export
+```
 
-To support different deployment environments, the trained models were exported into multiple formats.
+## Exported Formats
 
-Format	Purpose
-TensorFlow SavedModel	Standard TensorFlow deployment
-TensorFlow.js	Web browser inference
-TensorFlow Lite	Mobile and edge device inference
+| Format | Location | Purpose |
+| --- | --- | --- |
+| TensorFlow SavedModel | `savedmodel/` | Standard TensorFlow deployment |
+| TensorFlow.js | `tf-js/` | Browser-based inference |
+| TensorFlow Lite | `tf-lite/` | Mobile/edge deployment |
 
-Both Custom CNN and MobileNetV2 models are available in these formats.
+## Project Structure
 
-🛠️ Technologies Used
-
-Python
-
-TensorFlow / Keras
-
-NumPy
-
-Matplotlib
-
-Google Colab
-
-📂 Project Structure
-image-classification
-│
-├── models
-│   ├── cnn_manual
-│   └── mobilenetv2
-│
-├── notebooks
-│   └── training.ipynb
-│
-├── dataset_sample
-│
+```text
+.
+├── notebook.ipynb
+├── README.md
 ├── requirements.txt
-└── README.md
-🎯 Learning Outcomes
+├── savedmodel/
+│   ├── CNN manual/
+│   └── MobileNetV2/
+├── tf-js/
+│   ├── CNN manual/
+│   └── MobileNetV2/
+└── tf-lite/
+    ├── CNN manual/
+    └── MobileNetV2/
+```
 
-Through this project, the following concepts were implemented:
+## How to Run
 
-Building a custom CNN architecture
+1. Install dependencies:
 
-Applying transfer learning with MobileNetV2
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Evaluating model performance
+2. Open and run the notebook:
 
-Exporting models for cross-platform deployment
+   - `notebook.ipynb`
 
-👨‍💻 Author
+3. Use exported models from:
 
-Developed as part of a deep learning learning project from Dicoding.
+   - `savedmodel/` for TensorFlow
+   - `tf-js/` for TensorFlow.js
+   - `tf-lite/` for TensorFlow Lite
+
+## Notes
+
+- `requirements.txt` may include many packages from a broader environment (e.g., Colab).
+- For lightweight local setup, you can create a smaller dependency list later if needed.
+
+## Author
+
+Nur Rahmawati (Dicoding deep learning project)
