@@ -121,7 +121,7 @@ EarlyStopping(
     patience=7,
     restore_best_weights=True
 )
-## 📦 Model Export
+📦 Model Export
 
 To support different deployment environments, the trained models were exported into multiple formats.
 
@@ -132,7 +132,7 @@ TensorFlow Lite	Mobile and edge device inference
 
 Both Custom CNN and MobileNetV2 models are available in these formats.
 
-## 🛠️ Technologies Used
+🛠️ Technologies Used
 
 Python
 
@@ -144,7 +144,7 @@ Matplotlib
 
 Google Colab
 
-## 📂 Project Structure
+📂 Project Structure
 image-classification
 │
 ├── models
@@ -158,7 +158,7 @@ image-classification
 │
 ├── requirements.txt
 └── README.md
-## 🎯 Learning Outcomes
+🎯 Learning Outcomes
 
 Through this project, the following concepts were implemented:
 
@@ -170,6 +170,6 @@ Evaluating model performance
 
 Exporting models for cross-platform deployment
 
-## 👨‍💻 Author
+👨‍💻 Author
 
 Developed as part of a deep learning learning project from Dicoding.
