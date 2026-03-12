@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.ipynb_checkpoints
+
+# Large models
+*.h5
+*.keras
+*.pb
+*.tflite
